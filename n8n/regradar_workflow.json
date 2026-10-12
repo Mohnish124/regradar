@@ -1,0 +1,87 @@
+{
+  "name": "RegRadar - scheduled scan and alerts",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "cronExpression", "expression": "0 9 * * 1-5" }] }
+      },
+      "id": "a1f0c2d4-0001-4c2a-9a01-000000000001",
+      "name": "Weekday 09:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.REGRADAR_API_URL || 'http://backend:8000' }}/api/demo/run",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "Authorization", "value": "=Bearer {{ $env.REGRADAR_API_TOKEN }}" }]
+        },
+        "options": { "timeout": 120000 }
+      },
+      "id": "a1f0c2d4-0002-4c2a-9a01-000000000002",
+      "name": "Run RegRadar analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 200]
+    },
+    {
+      "parameters": {
+        "path": "regradar",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "a1f0c2d4-0003-4c2a-9a01-000000000003",
+      "name": "RegRadar run.completed webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 420],
+      "webhookId": "regradar"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ ($json.stats || $json.body.stats).accepted_gaps + ($json.stats || $json.body.stats).escalated_gaps }}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "a1f0c2d4-0004-4c2a-9a01-000000000004",
+      "name": "Any gaps or escalations?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SLACK_WEBHOOK_URL }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ text: 'RegRadar run ' + ($json.id || $json.body.run_id) + ': ' + ($json.stats || $json.body.stats).accepted_gaps + ' accepted gap(s), ' + ($json.stats || $json.body.stats).escalated_gaps + ' escalated for human review.' }) }}",
+        "options": {}
+      },
+      "id": "a1f0c2d4-0005-4c2a-9a01-000000000005",
+      "name": "Alert compliance channel (Slack)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [960, 300]
+    }
+  ],
+  "connections": {
+    "Weekday 09:00": { "main": [[{ "node": "Run RegRadar analysis", "type": "main", "index": 0 }]] },
+    "Run RegRadar analysis": { "main": [[{ "node": "Any gaps or escalations?", "type": "main", "index": 0 }]] },
+    "RegRadar run.completed webhook": { "main": [[{ "node": "Any gaps or escalations?", "type": "main", "index": 0 }]] },
+    "Any gaps or escalations?": { "main": [[{ "node": "Alert compliance channel (Slack)", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {},
+  "meta": { "templateCredsSetupCompleted": false }
+}
