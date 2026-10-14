@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RegRadar - Project Synopsis</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 20mm 18mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2937;
+    line-height: 1.55;
+    font-size: 10.5pt;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    border-bottom: 2.5px solid #2563eb;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  .project-tag {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #2563eb;
+    margin-bottom: 4px;
+  }
+  h1 {
+    font-size: 20pt;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-size: 11pt;
+    color: #475569;
+    margin: 0;
+  }
+  .meta-grid {
+    display: table;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 9pt;
+    color: #64748b;
+  }
+  .meta-col {
+    display: table-cell;
+    width: 33.3%;
+  }
+  .meta-col strong {
+    color: #1e293b;
+  }
+  h2 {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #0f172a;
+    border-left: 3.5px solid #2563eb;
+    padding-left: 8px;
+    margin: 18px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 12px 0 4px 0;
+  }
+  p {
+    margin: 0 0 8px 0;
+    text-align: justify;
+  }
+  ul, ol {
+    margin: 0 0 10px 0;
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 8pt;
+    font-weight: 600;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px 0;
+    font-size: 9pt;
+  }
+  th, td {
+    padding: 6px 8px;
+    text-align: left;
+    border: 1px solid #cbd5e1;
+  }
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 600;
+  }
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+  .diagram-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 8pt;
+    line-height: 1.35;
+    color: #0f172a;
+    text-align: center;
+  }
+  .footer {
+    margin-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 8px;
+    font-size: 8pt;
+    color: #94a3b8;
+    display: table;
+    width: 100%;
+  }
+  .footer-left { display: table-cell; width: 50%; }
+  .footer-right { display: table-cell; width: 50%; text-align: right; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="project-tag">Autonomous Multi-Agent Systems &bull; Enterprise Compliance AI</div>
+  <h1>RegRadar: Multi-Agent Regulatory Change Radar</h1>
+  <div class="subtitle">Automated Regulatory Ingestion, Control Mapping, Adversarial Gap Validation &amp; Remediation Planning</div>
+  <div class="meta-grid">
+    <div class="meta-col"><strong>Domain:</strong> Fintech / Payment Systems (RBI &bull; MeitY)</div>
+    <div class="meta-col"><strong>Architecture:</strong> LangGraph Multi-Agent StateGraph</div>
+    <div class="meta-col"><strong>Stack:</strong> Python 3.12, FastAPI, React 19, SQLite/Postgres</div>
+  </div>
+</div>
+
+<h2>1. Executive Summary &amp; Problem Statement</h2>
+<p>
+Modern digital financial institutions operate under strict, rapidly evolving regulatory regimes issued by authorities such as the Reserve Bank of India (RBI), the Securities and Exchange Board of India (SEBI), and the Ministry of Electronics and Information Technology (MeitY). Compliance teams face three acute challenges:
+</p>
+<ol>
+  <li><strong>Information Velocity &amp; Latency:</strong> New Master Directions and circulars require hundreds of engineering and policy hours to manually decompose into atomic obligations.</li>
+  <li><strong>Quantitative Shortfall Blindspots:</strong> Generalist analysis often confirms qualitative alignment (e.g., "incident response policy exists") while missing precise quantitative shortfalls (e.g., regulation mandating 6-hour regulatory reporting while internal policy operates on a 24-hour SLA).</li>
+  <li><strong>LLM Hallucination &amp; Over-Optimism:</strong> Naive single-prompt LLM agents suffer from hallucinations, ungrounded citations, and sycophantic acceptance of superficial compliance, creating severe regulatory exposure.</li>
+</ol>
+<p>
+<strong>RegRadar</strong> solves this through a cooperative, adversarial multi-agent architecture built on <strong>LangGraph</strong>. Six specialized autonomous agents retrieve circulars, extract atomic obligations, compute coverage matrices against internal controls, synthesize gaps, rigorously stress-test each gap across <strong>nine authoritative validation checks</strong> in an adaptive feedback loop, and prioritize remediation actions.
+</p>
+
+<h2>2. System Architecture &amp; The Six Specialized Agents</h2>
+<p>
+Agents in RegRadar do not communicate point-to-point; all interactions occur through a strongly-typed shared state (<code>RegRadarState</code>) with chronological execution trace logging:
+</p>
+
+<div class="diagram-box">
+  START &rarr; [Regulatory Scout] &rarr; [Obligation Extractor] &rarr; [Control Mapper] &rarr; [Gap Synthesiser]<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Revise Loop]&nbsp;&nbsp;&nbsp;[Novelty Validator]<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr; (route)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Escalation (Max Rev)] / [Finalise]<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Output Agent] &rarr; END
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Agent Name</th>
+      <th>Primary Role &amp; Methodology</th>
+      <th>Output Artifact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1</strong></td>
+      <td><strong>Regulatory Scout</strong></td>
+      <td>Ingests circulars (synthetic demo corpus, pasted documents, or live RBI/SEBI RSS feeds) and scores relevance against organization profile keywords.</td>
+      <td><code>documents</code></td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td><strong>Obligation Extractor</strong></td>
+      <td>Decomposes clauses into atomic obligations; identifies deontic modals (<em>shall/must</em> &rarr; mandatory, <em>should</em> &rarr; recommended, <em>may</em> &rarr; permissive) and regex-extracts quantitative parameters (deadlines, retention, audit frequencies). Enforces strict verbatim anti-hallucination.</td>
+      <td><code>obligations</code></td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td><strong>Control Mapper</strong></td>
+      <td>Evaluates coverage via a hybrid metric (0.65 &times; TF-IDF Cosine + 0.35 &times; Keyword Overlap). Flags quantitative parameter shortfalls against internal controls.</td>
+      <td><code>coverage</code> matrix</td>
+    </tr>
+    <tr>
+      <td><strong>4</strong></td>
+      <td><strong>Gap Synthesiser</strong></td>
+      <td>Drafts concrete compliance gaps in Round 0. In subsequent rounds, consumes structured validator feedback to revise, withdraw, or maintain proposals.</td>
+      <td><code>gaps</code> proposals</td>
+    </tr>
+    <tr>
+      <td><strong>5</strong></td>
+      <td><strong>Novelty Validator</strong></td>
+      <td>Adversarial quality gate. Re-derives facts independently across 9 deterministic rules (evidence grounding, novelty, duplicate check, severity calibration). Emits structured feedback codes.</td>
+      <td><code>validation_decisions</code> &amp; <code>pending_feedback</code></td>
+    </tr>
+    <tr>
+      <td><strong>6</strong></td>
+      <td><strong>Output Agent</strong></td>
+      <td>Applies a quantitative multi-factor risk formula ($R = S \times U \times E \times C$), determines P1/P2/P3 SLAs and departmental owners, and writes executive and technical Markdown reports.</td>
+      <td><code>remediation_plan</code> &amp; <code>report</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Key Engineering Highlights &amp; Innovations</h2>
+<ul>
+  <li><strong>Adaptive Feedback Loop with Machine-Readable Contracts:</strong> When the Novelty Validator rejects a proposal, it outputs structured issues containing <code>code</code>, <code>field</code>, <code>expected</code>, and <code>message</code>. The Gap Synthesiser processes this machine-readable contract programmatically to correct errors, withdraw redundant gaps, or mount defensible counter-arguments.</li>
+  <li><strong>Independent Validation Authority:</strong> Deterministic business rules always hold absolute authority over language models. LLMs are leveraged for semantic extraction and drafting, but cannot bypass or override the validator's grounding checks.</li>
+  <li><strong>Escalation Handling:</strong> The feedback cycle is formally bounded by <code>max_revisions</code>. If an adversarial impasse occurs (e.g., an agent repeatedly defends a non-mandatory recommendation), the graph breaks the cycle and escalates the specific gap to human reviewers with a complete rationale.</li>
+  <li><strong>Risk-Calibrated Remediation Formula:</strong> Remediation items are dynamically scored using:
+    $$\text{Risk Score} = \text{Severity Weight (2-10)} \times \text{Urgency Factor (1.0-1.6)} \times \text{Exposure Factor (1.0-1.25)} \times \text{Classification Factor (0.5-1.0)}$$
+  </li>
+</ul>
+
+<h2>4. Technology Stack &amp; Verification</h2>
+<ul>
+  <li><strong>Backend:</strong> Python 3.12, FastAPI, LangGraph 1.2+, Pydantic v2.14, Uvicorn, SQLite/PostgreSQL (Neon).</li>
+  <li><strong>Frontend:</strong> React 19, TypeScript, Vite, CSS Design System, Responsive Multi-Page SPA.</li>
+  <li><strong>Quality Assurance:</strong> 64 automated pytest tests covering unit components, routing decisions, feedback convergence, and API contracts. End-to-end verified via <code>scripts/verify.ps1</code>.</li>
+</ul>
+
+<div class="footer">
+  <div class="footer-left">RegRadar &bull; Autonomous Multi-Agent Regulatory Radar</div>
+  <div class="footer-right">Project Synopsis &bull; Page 1 of 1</div>
+</div>
+
+</body>
+</html>

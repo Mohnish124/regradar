@@ -1,0 +1,39 @@
+[project]
+name = "regradar"
+version = "1.0.0"
+description = "RegRadar - multi-agent regulatory change radar (CA3 project)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.141.1,<1.0",
+    "uvicorn[standard]>=0.30,<1.0",
+    "pydantic>=2.9,<3.0",
+    "langgraph>=1.0,<2.0",
+    "psycopg[binary]>=3.2,<4.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "httpx>=0.27,<1.0", "ruff>=0.6"]
+
+# ---- Vercel ------------------------------------------------------------------
+# Vercel loads the FastAPI instance `app` from backend/main.py. The dashboard is
+# built by vercel.json's buildCommand into frontend/dist and served via app.frontend().
+[tool.vercel]
+entrypoint = "backend.main:app"
+
+[tool.vercel.fastapi.static]
+cdn = true  # serve the built dashboard from Vercel's CDN even though CORS middleware is registered
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+markers = []
+
+[tool.ruff]
+line-length = 130
+target-version = "py311"
+extend-exclude = ["frontend", ".venv", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["B008", "E501"]  # FastAPI Depends()/Query() defaults are idiomatic; soft line-length limit
