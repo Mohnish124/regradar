@@ -61,6 +61,30 @@ function ApiStatus() {
   );
 }
 
+function ThemeToggle() {
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    return (localStorage.getItem("regradar-theme") as "light" | "dark") || "light";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("regradar-theme", theme);
+  }, [theme]);
+
+  return (
+    <div className="theme-toggle-wrap">
+      <button
+        type="button"
+        className="theme-toggle-btn"
+        onClick={() => setTheme((t) => (t === "light" ? "dark" : "light"))}
+        title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      >
+        <span>{theme === "light" ? "☀️ Light Mode" : "🌙 Dark Mode"}</span>
+      </button>
+    </div>
+  );
+}
+
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -93,6 +117,7 @@ export default function Layout() {
             </div>
           ))}
         </nav>
+        <ThemeToggle />
         <ApiStatus />
       </aside>
       <div className="main">
