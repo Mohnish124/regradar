@@ -42,6 +42,9 @@ class _HTTPClient:
 
     def _post(self, system: str, prompt: str) -> str:
         url, headers, body = self._request(system, prompt)
+        headers = dict(headers)
+        headers.setdefault("User-Agent", "RegRadar/1.0 (ComplianceEngine; +https://github.com/mayank09bansal/regradar)")
+        headers.setdefault("Accept", "application/json")
         data = json.dumps(body).encode("utf-8")
         last_error: Exception | None = None
         for attempt in range(self.max_retries + 1):
@@ -149,4 +152,9 @@ class OpenAICompatibleClient(_HTTPClient):
         )
 
     def _extract_text(self, body: dict[str, Any]) -> str:
-        return body["choices"][0]["message"]["content"] or ""
+        choices = body.get("choices") or []
+        if not choices:
+            return ""
+        choice = choices[0]
+        msg = choice.get("message") or {}
+        return msg.get("content") or msg.get("reasoning") or choice.get("text") or ""
