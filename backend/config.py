@@ -84,15 +84,15 @@ class Settings:
     database_url: str = "sqlite:///./data/regradar.db"
     cors_origins: tuple[str, ...] = ("http://localhost:5173", "http://127.0.0.1:5173")
 
-    llm_provider: str = "demo"
-    llm_model: str = ""
+    llm_provider: str = "openai"
+    llm_model: str = "openai/gpt-oss-120b"
     llm_temperature: float = 0.1
     llm_timeout_seconds: int = 60
     llm_max_retries: int = 2
     anthropic_api_key: str = field(default="", repr=False)
     anthropic_base_url: str = "https://api.anthropic.com"
     openai_api_key: str = field(default="", repr=False)
-    openai_base_url: str = "https://api.openai.com/v1"
+    openai_base_url: str = "https://api.groq.com/openai/v1"
 
     max_revisions: int = 2
     live_sources_enabled: bool = True
@@ -194,7 +194,7 @@ class Settings:
 
 def build_settings() -> Settings:
     load_dotenv_file(PROJECT_ROOT / ".env")
-    provider = _str("LLM_PROVIDER", "demo").lower() or "demo"
+    provider = _str("LLM_PROVIDER", "openai").lower() or "openai"
     if provider not in VALID_PROVIDERS:
         raise ValueError(f"LLM_PROVIDER must be one of {VALID_PROVIDERS}, got {provider!r}")
     origins = tuple(
@@ -214,14 +214,14 @@ def build_settings() -> Settings:
         database_url=database_url,
         cors_origins=origins,
         llm_provider=provider,
-        llm_model=_str("LLM_MODEL"),
+        llm_model=_str("LLM_MODEL", "openai/gpt-oss-120b"),
         llm_temperature=_float("LLM_TEMPERATURE", 0.1),
         llm_timeout_seconds=_int("LLM_TIMEOUT_SECONDS", 60, 5, 600),
         llm_max_retries=_int("LLM_MAX_RETRIES", 2, 0, 5),
         anthropic_api_key=_str("ANTHROPIC_API_KEY"),
         anthropic_base_url=_str("ANTHROPIC_BASE_URL", "https://api.anthropic.com").rstrip("/"),
         openai_api_key=_str("OPENAI_API_KEY"),
-        openai_base_url=_str("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/"),
+        openai_base_url=_str("OPENAI_BASE_URL", "https://api.groq.com/openai/v1").rstrip("/"),
         max_revisions=_int("MAX_REVISIONS", 2, 0, 5),
         live_sources_enabled=_bool("LIVE_SOURCES_ENABLED", True),
         source_timeout_seconds=_int("SOURCE_TIMEOUT_SECONDS", 15, 2, 120),
