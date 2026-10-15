@@ -23,7 +23,6 @@ data/*.db-*
 
 # Node / frontend
 frontend/node_modules/
-frontend/dist/
 *.log
 npm-debug.log*
 
