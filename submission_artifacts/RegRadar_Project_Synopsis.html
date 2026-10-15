@@ -6,7 +6,7 @@
 <style>
   @page {
     size: A4;
-    margin: 20mm 18mm 20mm 18mm;
+    margin: 18mm 16mm 18mm 16mm;
     @bottom-right {
       content: counter(page);
     }
@@ -14,15 +14,15 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #1f2937;
-    line-height: 1.55;
-    font-size: 10.5pt;
+    line-height: 1.5;
+    font-size: 10pt;
     margin: 0;
     padding: 0;
   }
   .header {
     border-bottom: 2.5px solid #2563eb;
-    padding-bottom: 12px;
-    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
   }
   .project-tag {
     font-size: 8.5pt;
@@ -33,24 +33,24 @@
     margin-bottom: 4px;
   }
   h1 {
-    font-size: 20pt;
+    font-size: 19pt;
     font-weight: 800;
     color: #0f172a;
-    margin: 0 0 6px 0;
+    margin: 0 0 4px 0;
     line-height: 1.2;
   }
   .subtitle {
-    font-size: 11pt;
+    font-size: 10.5pt;
     color: #475569;
     margin: 0;
   }
   .meta-grid {
     display: table;
     width: 100%;
-    margin-top: 12px;
-    padding-top: 10px;
+    margin-top: 10px;
+    padding-top: 8px;
     border-top: 1px solid #e2e8f0;
-    font-size: 9pt;
+    font-size: 8.5pt;
     color: #64748b;
   }
   .meta-col {
@@ -61,50 +61,34 @@
     color: #1e293b;
   }
   h2 {
-    font-size: 12pt;
+    font-size: 11.5pt;
     font-weight: 700;
     color: #0f172a;
     border-left: 3.5px solid #2563eb;
     padding-left: 8px;
-    margin: 18px 0 8px 0;
+    margin: 14px 0 6px 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
-  h3 {
-    font-size: 10.5pt;
-    font-weight: 700;
-    color: #1e293b;
-    margin: 12px 0 4px 0;
-  }
   p {
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
     text-align: justify;
   }
   ul, ol {
-    margin: 0 0 10px 0;
-    padding-left: 20px;
+    margin: 0 0 8px 0;
+    padding-left: 18px;
   }
   li {
-    margin-bottom: 3px;
-  }
-  .badge {
-    display: inline-block;
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 8pt;
-    font-weight: 600;
-    background: #eff6ff;
-    color: #1d4ed8;
-    border: 1px solid #bfdbfe;
+    margin-bottom: 2px;
   }
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 10px 0 14px 0;
-    font-size: 9pt;
+    margin: 8px 0 10px 0;
+    font-size: 8.5pt;
   }
   th, td {
-    padding: 6px 8px;
+    padding: 5px 7px;
     text-align: left;
     border: 1px solid #cbd5e1;
   }
@@ -120,19 +104,19 @@
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 6px;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 8px;
+    margin: 8px 0;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 8pt;
+    font-size: 7.5pt;
     line-height: 1.35;
     color: #0f172a;
     text-align: center;
   }
   .footer {
-    margin-top: 24px;
+    margin-top: 18px;
     border-top: 1px solid #e2e8f0;
-    padding-top: 8px;
-    font-size: 8pt;
+    padding-top: 6px;
+    font-size: 7.5pt;
     color: #94a3b8;
     display: table;
     width: 100%;
@@ -148,35 +132,31 @@
   <h1>RegRadar: Multi-Agent Regulatory Change Radar</h1>
   <div class="subtitle">Automated Regulatory Ingestion, Control Mapping, Adversarial Gap Validation &amp; Remediation Planning</div>
   <div class="meta-grid">
-    <div class="meta-col"><strong>Domain:</strong> Fintech / Payment Systems (RBI &bull; MeitY)</div>
-    <div class="meta-col"><strong>Architecture:</strong> LangGraph Multi-Agent StateGraph</div>
-    <div class="meta-col"><strong>Stack:</strong> Python 3.12, FastAPI, React 19, SQLite/Postgres</div>
+    <div class="meta-col"><strong>Domain:</strong> Fintech / Payment Aggregator (RBI &bull; MeitY)</div>
+    <div class="meta-col"><strong>Engine:</strong> LangGraph StateGraph &bull; Groq (120B LLM)</div>
+    <div class="meta-col"><strong>Stack:</strong> Python 3.12, FastAPI, React 19, Vercel Multi-Service</div>
   </div>
 </div>
 
 <h2>1. Executive Summary &amp; Problem Statement</h2>
 <p>
-Modern digital financial institutions operate under strict, rapidly evolving regulatory regimes issued by authorities such as the Reserve Bank of India (RBI), the Securities and Exchange Board of India (SEBI), and the Ministry of Electronics and Information Technology (MeitY). Compliance teams face three acute challenges:
+Digital financial entities operate under dense, rapidly shifting regulatory mandates from authorities such as the Reserve Bank of India (RBI), SEBI, and MeitY. Compliance teams face three critical operational bottlenecks:
 </p>
 <ol>
-  <li><strong>Information Velocity &amp; Latency:</strong> New Master Directions and circulars require hundreds of engineering and policy hours to manually decompose into atomic obligations.</li>
-  <li><strong>Quantitative Shortfall Blindspots:</strong> Generalist analysis often confirms qualitative alignment (e.g., "incident response policy exists") while missing precise quantitative shortfalls (e.g., regulation mandating 6-hour regulatory reporting while internal policy operates on a 24-hour SLA).</li>
-  <li><strong>LLM Hallucination &amp; Over-Optimism:</strong> Naive single-prompt LLM agents suffer from hallucinations, ungrounded citations, and sycophantic acceptance of superficial compliance, creating severe regulatory exposure.</li>
+  <li><strong>Analysis Latency:</strong> Complex regulatory circulars require hundreds of human hours to manually parse into atomic obligations.</li>
+  <li><strong>Quantitative Shortfall Blindspots:</strong> Qualitative audits often confirm high-level alignment (e.g. "an incident response procedure exists") while overlooking strict quantitative parameter gaps (e.g. regulation requires a 6-hour reporting window while internal policy enforces 24 hours).</li>
+  <li><strong>LLM Hallucination Risk:</strong> Single-prompt LLM agents suffer from ungrounded claims, invented citations, and premature acceptance of partial controls.</li>
 </ol>
 <p>
-<strong>RegRadar</strong> solves this through a cooperative, adversarial multi-agent architecture built on <strong>LangGraph</strong>. Six specialized autonomous agents retrieve circulars, extract atomic obligations, compute coverage matrices against internal controls, synthesize gaps, rigorously stress-test each gap across <strong>nine authoritative validation checks</strong> in an adaptive feedback loop, and prioritize remediation actions.
+<strong>RegRadar</strong> solves this via a cooperative, adversarial multi-agent architecture built on <strong>LangGraph</strong>. Six specialized autonomous agents retrieve circulars, extract atomic obligations, compute coverage matrices against internal controls, synthesize gaps, rigorously stress-test each gap across <strong>nine authoritative validation checks</strong> in an adaptive feedback loop, and produce prioritised remediation plans. RegRadar operates in both <strong>Live LLM Mode</strong> (powered by Groq 120B reasoning) and <strong>Deterministic Demo Mode</strong> (repeatable synthetic evaluation).
 </p>
 
-<h2>2. System Architecture &amp; The Six Specialized Agents</h2>
-<p>
-Agents in RegRadar do not communicate point-to-point; all interactions occur through a strongly-typed shared state (<code>RegRadarState</code>) with chronological execution trace logging:
-</p>
-
+<h2>2. Architecture &amp; The Six Specialized Agents</h2>
 <div class="diagram-box">
   START &rarr; [Regulatory Scout] &rarr; [Obligation Extractor] &rarr; [Control Mapper] &rarr; [Gap Synthesiser]<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&uarr;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Revise Loop]&nbsp;&nbsp;&nbsp;[Novelty Validator]<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr; (route)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr; (conditional route)<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Escalation (Max Rev)] / [Finalise]<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&darr;<br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Output Agent] &rarr; END
@@ -187,7 +167,7 @@ Agents in RegRadar do not communicate point-to-point; all interactions occur thr
     <tr>
       <th>#</th>
       <th>Agent Name</th>
-      <th>Primary Role &amp; Methodology</th>
+      <th>Role &amp; Core Methodology</th>
       <th>Output Artifact</th>
     </tr>
   </thead>
@@ -195,62 +175,59 @@ Agents in RegRadar do not communicate point-to-point; all interactions occur thr
     <tr>
       <td><strong>1</strong></td>
       <td><strong>Regulatory Scout</strong></td>
-      <td>Ingests circulars (synthetic demo corpus, pasted documents, or live RBI/SEBI RSS feeds) and scores relevance against organization profile keywords.</td>
+      <td>Ingests circulars (synthetic dataset, user pasted text, or live RSS feeds) and scores relevance.</td>
       <td><code>documents</code></td>
     </tr>
     <tr>
       <td><strong>2</strong></td>
       <td><strong>Obligation Extractor</strong></td>
-      <td>Decomposes clauses into atomic obligations; identifies deontic modals (<em>shall/must</em> &rarr; mandatory, <em>should</em> &rarr; recommended, <em>may</em> &rarr; permissive) and regex-extracts quantitative parameters (deadlines, retention, audit frequencies). Enforces strict verbatim anti-hallucination.</td>
+      <td>Decomposes clauses into atomic obligations, detects deontic modals (<em>shall/must</em> &rarr; mandatory), regex-extracts quantitative parameters, enforces strict verbatim grounding.</td>
       <td><code>obligations</code></td>
     </tr>
     <tr>
       <td><strong>3</strong></td>
       <td><strong>Control Mapper</strong></td>
-      <td>Evaluates coverage via a hybrid metric (0.65 &times; TF-IDF Cosine + 0.35 &times; Keyword Overlap). Flags quantitative parameter shortfalls against internal controls.</td>
+      <td>Computes hybrid similarity ($0.65 \times \text{TF-IDF Cosine} + 0.35 \times \text{Keyword Overlap}$) and evaluates parameter shortfalls against internal controls.</td>
       <td><code>coverage</code> matrix</td>
     </tr>
     <tr>
       <td><strong>4</strong></td>
       <td><strong>Gap Synthesiser</strong></td>
-      <td>Drafts concrete compliance gaps in Round 0. In subsequent rounds, consumes structured validator feedback to revise, withdraw, or maintain proposals.</td>
+      <td>Proposes actionable gaps. In feedback loops, programmatically interprets validator rejection codes to revise severity, quote verbatim evidence, or withdraw.</td>
       <td><code>gaps</code> proposals</td>
     </tr>
     <tr>
       <td><strong>5</strong></td>
       <td><strong>Novelty Validator</strong></td>
-      <td>Adversarial quality gate. Re-derives facts independently across 9 deterministic rules (evidence grounding, novelty, duplicate check, severity calibration). Emits structured feedback codes.</td>
+      <td>Adversarial quality gate enforcing 9 deterministic rules (evidence grounding, novelty, duplicate check, severity calibration). Issues structured feedback.</td>
       <td><code>validation_decisions</code> &amp; <code>pending_feedback</code></td>
     </tr>
     <tr>
       <td><strong>6</strong></td>
       <td><strong>Output Agent</strong></td>
-      <td>Applies a quantitative multi-factor risk formula ($R = S \times U \times E \times C$), determines P1/P2/P3 SLAs and departmental owners, and writes executive and technical Markdown reports.</td>
+      <td>Calculates multi-factor risk scores ($R = S \times U \times E \times C$), determines P1/P2/P3 SLAs and departmental owners, and writes executive Markdown reports.</td>
       <td><code>remediation_plan</code> &amp; <code>report</code></td>
     </tr>
   </tbody>
 </table>
 
-<h2>3. Key Engineering Highlights &amp; Innovations</h2>
+<h2>3. Key Innovations &amp; Engineering Highlights</h2>
 <ul>
-  <li><strong>Adaptive Feedback Loop with Machine-Readable Contracts:</strong> When the Novelty Validator rejects a proposal, it outputs structured issues containing <code>code</code>, <code>field</code>, <code>expected</code>, and <code>message</code>. The Gap Synthesiser processes this machine-readable contract programmatically to correct errors, withdraw redundant gaps, or mount defensible counter-arguments.</li>
-  <li><strong>Independent Validation Authority:</strong> Deterministic business rules always hold absolute authority over language models. LLMs are leveraged for semantic extraction and drafting, but cannot bypass or override the validator's grounding checks.</li>
-  <li><strong>Escalation Handling:</strong> The feedback cycle is formally bounded by <code>max_revisions</code>. If an adversarial impasse occurs (e.g., an agent repeatedly defends a non-mandatory recommendation), the graph breaks the cycle and escalates the specific gap to human reviewers with a complete rationale.</li>
-  <li><strong>Risk-Calibrated Remediation Formula:</strong> Remediation items are dynamically scored using:
-    $$\text{Risk Score} = \text{Severity Weight (2-10)} \times \text{Urgency Factor (1.0-1.6)} \times \text{Exposure Factor (1.0-1.25)} \times \text{Classification Factor (0.5-1.0)}$$
-  </li>
+  <li><strong>Deterministic Business Rules Override LLMs:</strong> LLMs provide generative and syntactic extraction capabilities, but the Novelty Validator's deterministic code rules maintain absolute veto authority to eliminate hallucinations.</li>
+  <li><strong>Structured Machine-Readable Feedback Contracts:</strong> Rejections return structured issues (<code>code</code>, <code>field</code>, <code>expected</code>, <code>message</code>). The Gap Synthesiser parses these codes to converge automatically without manual prompts.</li>
+  <li><strong>Bounded Revision with Graceful Escalation:</strong> Cycles are bounded by <code>max_revisions</code> (default: 2). Unresolved disputes escalate directly to human review with complete reasoning audit logs.</li>
+  <li><strong>Production Live LLM Integration:</strong> Integrated with Groq's high-speed inference engine (<code>openai/gpt-oss-120b</code>) with automated Cloudflare client signatures and resilient JSON self-repair.</li>
+  <li><strong>Modern Light Theme UI &amp; Cloud Deployment:</strong> Features a crisp, high-contrast light theme with real-time dark/light switching and multi-service deployment on Vercel.</li>
 </ul>
 
-<h2>4. Technology Stack &amp; Verification</h2>
-<ul>
-  <li><strong>Backend:</strong> Python 3.12, FastAPI, LangGraph 1.2+, Pydantic v2.14, Uvicorn, SQLite/PostgreSQL (Neon).</li>
-  <li><strong>Frontend:</strong> React 19, TypeScript, Vite, CSS Design System, Responsive Multi-Page SPA.</li>
-  <li><strong>Quality Assurance:</strong> 64 automated pytest tests covering unit components, routing decisions, feedback convergence, and API contracts. End-to-end verified via <code>scripts/verify.ps1</code>.</li>
-</ul>
+<h2>4. Verification &amp; Test Coverage</h2>
+<p>
+The system is backed by <strong>64 automated pytest tests</strong> covering unit logic, agent routing, feedback convergence, and API contracts. End-to-end verified via <code>scripts/verify.ps1</code> with 100% pass rate.
+</p>
 
 <div class="footer">
   <div class="footer-left">RegRadar &bull; Autonomous Multi-Agent Regulatory Radar</div>
-  <div class="footer-right">Project Synopsis &bull; Page 1 of 1</div>
+  <div class="footer-right">Project Synopsis &bull; Academic &amp; Enterprise CA3 Submission</div>
 </div>
 
 </body>
