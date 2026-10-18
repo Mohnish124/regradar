@@ -9,7 +9,7 @@ RegRadar turns new regulatory circulars into **validated, prioritised compliance
 
 
 * **Six LangGraph Agents we used in this:** Regulatory Scout &rarr; Obligation Extractor &rarr; Control Mapper &rarr; Gap Synthesiser &harr; Novelty Validator &rarr; Output Agent.
-* **Adaptive Feedback Loop:** The Novelty Validator rejects gaps with structured feedback (issue code, target field, expected value). The Gap Synthesiser receives this through shared LangGraph state and revises, withdraws, or defends each gap. The graph re-validates, finalising accepted gaps or escalating to a human compliance officer upon reaching the revision limit.
+* **Adaptive Feedback Loop:** The Novelty Validator rejects gaps with structured feedback (issue code, target field, expected value). The Gap Synthesiser receives this through shared LangGraph state and revises, withdraws, or defends each gap. The graph re-validates, finalising accepted gaps or escalating to a human compliance officer upon reaching the revised limit.
 * **Nine Independent Validation Checks:** Evidence grounding, citation consistency, already covered, already tracked (novelty / known-issues register), duplicate detection, modality classification, severity calibration, required detail, and obligation existence.
 * **Persistent Execution Traces:** Full chronological record of every message passed between agents, inspectable in the web dashboard.
 * **Live Mode:** Anthropic or any OpenAI-compatible provider (OpenAI, Groq, Google Gemini, Ollama), pasted circulars, and live RBI/SEBI RSS feeds.
